@@ -68,10 +68,10 @@ namespace oo2pk
     }
     internal class Librarian
     {
-        string Name, Password, SearchString;
-        int ID;
+        public string Name, Password, SearchString;
+        public int ID;
         public Library_Managment_System lms;
-        public Book book;
+        List<Book> listOfRentedBooks;
         public void Verify_librarian()
         {
             Console.WriteLine("Verify Librarian");
@@ -79,6 +79,14 @@ namespace oo2pk
         public void Search()
         {
             Console.WriteLine("Search");
+        }
+        public void RentBook()
+        {
+            Library_database db = new Library_database();
+            Book ksiazka = new Book();
+            db.Search();
+            listOfRentedBooks.Add(ksiazka);
+            Console.WriteLine("Rent Book");
         }
     }
     internal class Account
@@ -92,8 +100,8 @@ namespace oo2pk
     }
     internal class Library_database
     {
-        public List<string> List_Of_Books = new List<string>();
-        public Librarian librarian;
+        public List<string> ListOfBooks = new List<string>();
+        Librarian lib;
         public void Add()
         {
             Console.WriteLine("Add");
@@ -114,12 +122,27 @@ namespace oo2pk
         {
             Console.WriteLine("Search");
         }
+        public void getLibrarian()
+        {
+            Console.WriteLine("Librarian: xxx");
+        }
 
     }
     internal class Program
     {
         static void Main(string[] args)
         {
+            Book book1 = new Book();
+            book1.Show_duedt();
+            book1.Feedback();
+
+            Librarian libek = new Librarian();
+            libek.Name = "Bartosz";
+            libek.ID = 123;
+            libek.Verify_librarian();
+            List<Book> lista = new List<Book>();
+            lista.Add(book1);
+            libek.RentBook();
         }
     }
 }
